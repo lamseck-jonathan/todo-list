@@ -1,0 +1,5 @@
+Instruction pour installer la todo app by LAMSECK
+tapez les commandes ci-dessous pour lancer le projet
+1-cd todoapp
+2-npm install
+3-npm run dev

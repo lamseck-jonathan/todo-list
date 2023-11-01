@@ -1,8 +1,5 @@
 <template>
     <div>
-      <section id="navbar">
-        <Navbar/>
-      </section>
       <section id="body" class="bg-theme window-height pt-4">
         <div class="container row">
             <div class="col-md-4">
@@ -70,10 +67,9 @@
   
   <script setup lang="ts">
   import { computed, ref } from 'vue';
-  import Navbar from '../components/Navbar.vue';
   import TodoList from '../components/TodoList.vue'
   import Modal from '../components/Modal.vue';
-import SideNav from '../components/SideNav.vue';
+  import SideNav from '../components/SideNav.vue';
   import FormTask from '../components/FormTask.vue';
   import {getEmptyTask, getEmptyTaskList} from '../utils/getEmptyTask'
   import { CrudAction } from '../enums/CrudAction.enum';

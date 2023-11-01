@@ -6,15 +6,14 @@
         >
             <div class="overlay"></div>
             <div class="card modal-size" role="document">
-                <div class="card-body">
-                    <div class="modal-header">
+                <div>
+                    <div class="modal-header fw-bold px-3 bg-theme py-3 bottom-separator">
                         {{props.modalTitle}}
                         <a @click="emits('close')" style="color: #3f3f3f;" href="#!" role="button">
                             <i class="fas fa-xmark fa-lg"></i>
                         </a>
                     </div>
-                    <hr class="hr" />
-                    <div class="modal-body">
+                    <div class="modal-body px-3 py-3">
                         <slot name="body"></slot>
                     </div>
                 </div>
@@ -63,6 +62,12 @@ const emits = defineEmits(['close'])
         bottom: 0;
     }
 
+    .bg-theme{
+        background: #E8F1F5;
+    }
+    .bottom-separator{
+        border-bottom: 2px solid #F1EFEF;
+    }
     .modal-size{
         width: 300px;
     }

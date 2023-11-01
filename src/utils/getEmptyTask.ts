@@ -13,3 +13,23 @@ export function getEmptyTaskList() : Task[]{
         
     ]
 }
+
+export function getEmptyTaskListPrefilled() : Task[]{
+    return [
+        {
+            id:1,
+            name:'Travailler',
+            isDone:false
+        },
+        {
+            id:2,
+            name:'Prier',
+            isDone:false
+        },
+        {
+            id:3,
+            name:'Manger',
+            isDone:false
+        }
+    ]
+}

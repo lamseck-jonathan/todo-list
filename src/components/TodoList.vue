@@ -115,7 +115,6 @@
 <script setup lang="ts">
 import { PropType, computed } from 'vue';
 import { Task } from '../model/Task.interface';
-import SimpleTransitionGroup from '../components/Transition/SimpleTransitionGroup.vue'
 
 const props = defineProps({
     tasks:{

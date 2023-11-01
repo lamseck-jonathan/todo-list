@@ -1,7 +1,7 @@
 <template>
-    <transition-group name="fromleft" appear>
+    <TransitionGroup name="fromleft" appear>
         <slot></slot>
-    </transition-group>
+    </TransitionGroup>
 </template>
 
 <script setup lang="ts">
@@ -9,19 +9,30 @@
 </script>
 
 <style>
-    .fromleft-enter-from{
-        opacity: 0;
-    }
-    .fromleft-enter-to{
-        opacity: 1;
-    }
-    .fromleft-enter-active{
-
+    .fromleft-enter-active {
         animation: fromleft 0.8s ease;
     }
 
-    @keyframes fromleft{
-        0% {transform: translateX(-80px);opacity: 0}
-        100% {transform: translateX(0px);opacity: 1}
+    .fromleft-leave-active {
+        animation: fromleft 0.8s ease; /* Use the same animation for leave as well */
+    }
+
+    .fromleft-enter-from,
+    .fromleft-enter-to,
+    .fromleft-leave-from,
+    .fromleft-leave-to {
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+
+    @keyframes fromleft {
+        0% {
+            transform: translateX(-100%);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 </style>

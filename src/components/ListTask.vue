@@ -1,29 +1,31 @@
 <template>
-    <div class="list-task container">
-        <div class="d-flex flex-row justify-content-start align-items-center"> 
-            <h5 class="text-theme pt-3 ml-3">
-                {{ listeTitle }}
-            </h5>
-            <span class="badge badge-info mt-2 ml-3">
-                {{ taskCount }} 
-                {{taskCount > 1 ? 'Tâches' : 'Tâche'}}
-            </span> 
+    <Transition name="animation" appear>
+        <div class="list-task container">
+            <div class="d-flex flex-row justify-content-start align-items-center"> 
+                <h5 class="text-theme pt-3 ml-3">
+                    {{ listeTitle }}
+                </h5>
+                <span class="badge badge-info mt-2 ml-3">
+                    {{ taskCount }} 
+                    {{taskCount > 1 ? 'Tâches' : 'Tâche'}}
+                </span> 
+            </div>
+            
+            <AddButton
+            class="px-3 py-3"
+            v-if="props.typeList == TypeList.UNDONE"
+            v-model="taskItem"
+            @submit="((item :Task) => submitTask(item))"
+            />
+            <TaskRow
+            :is-done="isDone"
+            class="pb-4 px-3"
+            :tasks="taskList.value"
+            @delete-task="((item :Task) => emits('delete-task',item))"
+            @edit-task="((item :Task) => emits('edit-task',item))"
+            />
         </div>
-        
-        <AddButton
-        class="px-3 py-3"
-        v-if="props.typeList == TypeList.UNDONE"
-        v-model="taskItem"
-        @submit="((item :Task) => submitTask(item))"
-        />
-        <TaskRow
-        :is-done="isDone"
-        class="pb-4 px-3"
-        :tasks="taskList.value"
-        @delete-task="((item :Task) => emits('delete-task',item))"
-        @edit-task="((item :Task) => emits('edit-task',item))"
-        />
-    </div>
+    </Transition>
 </template>
 
 <script setup lang="ts">
@@ -77,9 +79,38 @@ function submitTask(item :Task){
     border:2px solid #dadada;
     border-radius: 10px;
     background-color: white;
+    transition: all 0.5s ease;
 }
 
 .text-theme{
     color: #015b97;
   }
+
+    .animation-enter-from{
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    .animation-enter-to{
+        opacity: 1;
+        transform: scale(1);
+    }
+    .animation-enter-active{
+        transition: all 0.2s ease;
+    }
+
+    .animation-leave-from{
+        opacity: 1;
+        transform: scale(1);
+    }
+    .animation-leave-to{
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    .animation-leave-active{
+        transition: all 0.2s ease;
+        position: absolute;
+    }
+    .animation-move{
+        transition: all 0.3s ease;
+    }
 </style>

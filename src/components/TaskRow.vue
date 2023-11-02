@@ -2,10 +2,8 @@
     <ul 
     class="list-group list-group-light"
     >
-        <li 
-        class="mt-2"
-        >
-            <div 
+        <TransitionGroup tag="ul" name="list">
+            <li 
             class="my-2 py-2 task-done bottom-separator" 
             v-for="(task,index) in props.tasks" 
             :key="task.name"
@@ -37,8 +35,8 @@
                         />
                     </div>
                 </div>
-            </div>
-        </li>
+            </li>
+        </TransitionGroup>
     </ul>
 </template>
 
@@ -78,5 +76,33 @@ function toggleTask(task:Task){
 <style>
     .bottom-separator{
         border-bottom: 2px solid #F1EFEF;
+    }
+
+    .list-enter-from{
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    .list-enter-to{
+        opacity: 1;
+        transform: scale(1);
+    }
+    .list-enter-active{
+        transition: all 0.2s ease;
+    }
+
+    .list-leave-from{
+        opacity: 1;
+        transform: scale(1);
+    }
+    .list-leave-to{
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    .list-leave-active{
+        transition: all 0.2s ease;
+        position: absolute;
+    }
+    .list-move{
+        transition: all 0.3s ease;
     }
 </style>

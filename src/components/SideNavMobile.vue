@@ -1,6 +1,6 @@
 <template>
-    <FromLeftTransitionGroup v-if="props.menuState == true">
-        <div class="sidenav-mobile-phone p-4 d-flex flex-column justify-between">
+    <Transition name="fromleft" mode="in-out">
+        <div v-if="props.menuState" class="sidenav-mobile-phone p-4 d-flex flex-column justify-between">
             <div class="card-body pb-4">
                 <h5 class="card-title pt-4">
                     Menu
@@ -26,12 +26,10 @@
                     &copy;Company Lam Seck
             </a>
         </div>
-    </FromLeftTransitionGroup>
+    </Transition>
 </template>
 
 <script setup lang="ts">
-import FromLeftTransitionGroup from '../components/Transition/FromLeftTransitionGroup.vue';
-
 const emits = defineEmits(['toggle-menu'])
 const props = defineProps({
     menuState:{
@@ -67,5 +65,32 @@ function toggleMenu(){
         left: 0;
         right: 0;
         bottom: 0;
+    }
+
+    .fromleft-enter-from{
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+    .fromleft-enter-to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .fromleft-enter-active{
+        transition: all 0.2s ease;
+    }
+
+    .fromleft-leave-from{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .fromleft-leave-to{
+        opacity: 1;
+        transform: translateX(-100%);
+    }
+    .fromleft-leave-active{
+        transition: all 0.2s ease;
+    }
+    .fromleft-move{
+        transition: all 0.3s ease;
     }
 </style>
